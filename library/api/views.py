@@ -1,8 +1,8 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Book, Author, Publisher
-from .serializers import BookSerializer, AuthorSerializer, PublisherSerializer
+from .models import Book, Author, Publisher, Review
+from .serializers import BookSerializer, AuthorSerializer, PublisherSerializer, ReviewSerializer
 
 class BookList(APIView):
     def get(self, request):
@@ -64,4 +64,10 @@ class PublisherDetail(APIView):
     def get(self, request, pk):
         publisher = Publisher.objects.get(pk=pk)
         serializer = PublisherSerializer(publisher)
+        return Response(serializer.data)
+    
+class ReviewList(APIView):
+    def get(self, request):
+        reviews = Review.objects.all()
+        serializer = ReviewSerializer(reviews, many=True)
         return Response(serializer.data)
