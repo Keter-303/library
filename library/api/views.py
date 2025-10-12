@@ -1,0 +1,73 @@
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Book, Author, Publisher, Review
+from .serializers import BookSerializer, AuthorSerializer, PublisherSerializer, ReviewSerializer
+
+class BookList(APIView):
+    def get(self, request):
+        books = Book.objects.all()
+        serializer = BookSerializer(books, many=True)
+        return Response(serializer.data)
+
+    def post(self, request):
+        serializer = BookSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class BookDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Book.objects.get(pk=pk)
+        except Book.DoesNotExist:
+            raise status.HTTP_404_NOT_FOUND
+
+    def get(self, request, pk):
+        book = self.get_object(pk)
+        serializer = BookSerializer(book)
+        return Response(serializer.data)
+
+    def put(self, request, pk):
+        book = self.get_object(pk)
+        serializer = BookSerializer(book, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk):
+        book = self.get_object(pk)
+        book.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+class AuthorList(APIView):
+    def get(self, request):
+        authors = Author.objects.all()
+        serializer = AuthorSerializer(authors, many=True)
+        return Response(serializer.data)
+
+class AuthorDetail(APIView):
+    def get(self, request, pk):
+        author = Author.objects.get(pk=pk)
+        serializer = AuthorSerializer(author)
+        return Response(serializer.data)
+
+class PublisherList(APIView):
+    def get(self, request):
+        publishers = Publisher.objects.all()
+        serializer = PublisherSerializer(publishers, many=True)
+        return Response(serializer.data)
+
+class PublisherDetail(APIView):
+    def get(self, request, pk):
+        publisher = Publisher.objects.get(pk=pk)
+        serializer = PublisherSerializer(publisher)
+        return Response(serializer.data)
+    
+class ReviewList(APIView):
+    def get(self, request):
+        reviews = Review.objects.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return Response(serializer.data)

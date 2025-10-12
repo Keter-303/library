@@ -318,3 +318,63 @@ Here is a textual representation of the database schema. A diagram should be cre
   - `user_id` (FK to users.id)
   - `book_id` (FK to books.id)
   - `quantity`
+
+## Installation
+
+### Prerequisites
+
+- Python 3.x
+- Node.js and npm
+
+### Backend Setup
+
+1.  **Navigate to the project root.**
+2.  **Create a virtual environment:**
+    ```bash
+    python -m venv venv
+    ```
+3.  **Activate the virtual environment:**
+    - On Windows:
+      ```bash
+      venv\Scripts\activate
+      ```
+    - On macOS/Linux:
+      ```bash
+      source venv/bin/activate
+      ```
+4.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+5.  **Navigate into the `library` directory and apply migrations:**
+    ```bash
+    cd library
+    python manage.py migrate
+    ```
+6.  **(Optional) Populate the database with sample data (from the project root):**
+    ```bash
+    cd ..
+    python populate_db.py
+    ```
+7.  **Run the backend server (from the `library` directory):**
+    ```bash
+    python manage.py runserver
+    ```
+    Or use the `run_server.bat` script from the root directory.
+
+### Frontend Setup
+
+1.  **Navigate to the frontend directory:**
+    ```bash
+    cd frontend
+    ```
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+3.  **Run the frontend server:**
+    ```bash
+    npm start
+    ```
+    Or use the `run_frontend.bat` script from the root directory.
+
