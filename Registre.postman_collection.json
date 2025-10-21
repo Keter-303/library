@@ -1,0 +1,49 @@
+{
+	"info": {
+		"_postman_id": "de5ca93d-8010-4084-a409-ebd4f0f567a5",
+		"name": "Registre",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45197812"
+	},
+	"item": [
+		{
+			"name": "reg",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"user\",\n    \"email\": \"user@example.com\",\n    \"first_name\": \"test\",\n    \"last_name\": \"User\",\n    \"password\": \"password\",\n    \"password2\": \"password\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/register/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"register",
+						""
+					]
+				},
+				"description": "Спроба зареєструвати нового користувача. У разі успіху поверне статус 201 Created. Якщо користувач з таким іменем або поштою вже існує, поверне 400 Bad Request."
+			},
+			"response": []
+		}
+	]
+}

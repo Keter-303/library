@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "887f96eb-263a-4499-9594-933049b5b7e5",
+		"name": "Jwt logout",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "45197812"
+	},
+	"item": [
+		{
+			"name": "logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/auth/logout/",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"auth",
+						"logout",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
